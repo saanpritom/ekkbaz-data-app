@@ -1,5 +1,6 @@
 """Main API view classes of the app."""
 from rest_framework.viewsets import ModelViewSet
+from rest_framework.permissions import IsAuthenticated
 
 from apps.business.serializers import BusinessModelSerializer
 
@@ -10,3 +11,4 @@ class BusinessModelAPIViewSet(ModelViewSet):
 
     serializer_class = BusinessModelSerializer
     queryset = serializer_class.Meta.model.objects.all()
+    permission_classes = [IsAuthenticated]
