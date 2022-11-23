@@ -89,7 +89,7 @@ WSGI_APPLICATION = 'conf.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
-"""DATABASES = {
+DATABASES = {
     'default': {
         'ENGINE': env.str('BUSINESS_APP_DATABASE_ENGINE'),
         'NAME': env.str('BUSINESS_APP_DATABASE_NAME'),
@@ -98,15 +98,7 @@ WSGI_APPLICATION = 'conf.wsgi.application'
         'HOST': env.str('BUSINESS_APP_DATABASE_HOST'),
         'PORT': env.int('BUSINESS_APP_DATABASE_PORT'),
     }
-}"""
-
-DATABASES = {
-    'default': {
-        'ENGINE': env.str('BUSINESS_APP_DATABASE_ENGINE'),
-        'NAME': BASE_DIR / env.str('BUSINESS_APP_DATABASE_NAME'),
-    }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
