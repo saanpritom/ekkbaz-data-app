@@ -6,7 +6,7 @@ from apps.business.views import BusinessModelAPIViewSet
 
 
 router = routers.DefaultRouter()
-router.register(r'', BusinessModelAPIViewSet, basename='business-routers')
+router.register(r'data', BusinessModelAPIViewSet, basename='business-routers')
 
 urlpatterns = [
     path('', include(router.urls)),

@@ -35,7 +35,7 @@ python app/manage.py runserver
 - The pattern for the endpoints are like this
 
 ```link
-https://{your-domain-name}/api/business/
+https://{your-domain-name}/api/business/data/
 ```
 - The operation is determined by the request method. The allowed methods are `Create`, `List`, `Detail`, `PUT`, `Patch` and `Delete`.
 
@@ -49,14 +49,14 @@ the **JWT Token** service and read the **README.md** there.
     ```bash
     curl \
     -H "Authorization: Bearer {access_key}" \
-    https://{your-domain-name}/api/business/
+    https://{your-domain-name}/api/business/data/
     ```
     - To view a single businesse's details run the following command
 
     ```bash
     curl \
     -H "Authorization: Bearer {access_key}" \
-    https://{your-domain-name}/api/business/{id}
+    https://{your-domain-name}/api/business/data/{id}
     ```
     - To create a new business run the following command
 
@@ -65,7 +65,7 @@ the **JWT Token** service and read the **README.md** there.
     -X POST \
     -H "Authorization: Bearer {access_key}" \
     -d '{"name": "your-business-name", "location": "your-business-location"}' \
-    https://{your-domain-name}/api/business/
+    https://{your-domain-name}/api/business/data/
     ```
     - To fully update a business run the following command
 
@@ -74,7 +74,7 @@ the **JWT Token** service and read the **README.md** there.
     -X PUT \
     -H "Authorization: Bearer {access_key}" \
     -d '{"name": "your-business-name", "location": "your-business-location"}' \
-    https://{your-domain-name}/api/business/{id}
+    https://{your-domain-name}/api/business/data/{id}
     ```
     - To partially update a business run the following command
 
@@ -83,7 +83,7 @@ the **JWT Token** service and read the **README.md** there.
     -X PATCH \
     -H "Authorization: Bearer {access_key}" \
     -d '{"name": "your-business-name"}' \
-    https://{your-domain-name}/api/business/{id}
+    https://{your-domain-name}/api/business/data/{id}
     ```
     - To delete a business run the following command
 
@@ -91,7 +91,7 @@ the **JWT Token** service and read the **README.md** there.
     curl \
     -X DELETE \
     -H "Authorization: Bearer {access_key}" \
-    https://{your-domain-name}/api/business/{id}
+    https://{your-domain-name}/api/business/data/{id}
     ```
 
 
