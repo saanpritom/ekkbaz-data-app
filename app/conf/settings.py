@@ -23,7 +23,6 @@ env = environ.Env(
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 ROOT_DIR = Path(__file__).resolve().parent.parent.parent
-# BASE_DIR = os.path.join(ROOT_DIR, 'app')
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 # Set the environment file path.
@@ -34,12 +33,12 @@ environ.Env.read_env(os.path.join(ROOT_DIR, '.env'))
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = env.str('SECRET_KEY')
+SECRET_KEY = env.str('BUSINESS_APP_SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = env.bool('DEBUG')
+DEBUG = env.bool('BUSINESS_APP_DEBUG')
 
-ALLOWED_HOSTS = env.list('ALLOWED_HOSTS')
+ALLOWED_HOSTS = env.list('BUSINESS_APP_ALLOWED_HOSTS')
 
 
 # Application definition
@@ -92,8 +91,12 @@ WSGI_APPLICATION = 'conf.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': env.str('DATABASE_ENGINE'),
-        'NAME': BASE_DIR / env.str('DATABASE_NAME'),
+        'ENGINE': env.str('BUSINESS_APP_DATABASE_ENGINE'),
+        'NAME': env.str('BUSINESS_APP_DATABASE_NAME'),
+        'USER': env.str('BUSINESS_APP_DATABASE_USER'),
+        'PASSWORD': env.str('BUSINESS_APP_DATABASE_PASSWORD'),
+        'HOST': env.str('BUSINESS_APP_DATABASE_HOST'),
+        'PORT': env.int('BUSINESS_APP_DATABASE_PORT'),
     }
 }
 
@@ -120,26 +123,32 @@ AUTH_PASSWORD_VALIDATORS = [
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework_simplejwt.authentication.JWTStatelessUserAuthentication',
-    )
+    ),
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': env.int('BUSINESS_APP_LIST_API_PAGE_SIZE'),
 }
 
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.1/topics/i18n/
 
-LANGUAGE_CODE = env.str('LANGUAGE_CODE')
+LANGUAGE_CODE = env.str('BUSINESS_APP_LANGUAGE_CODE')
 
-TIME_ZONE = env.str('TIME_ZONE')
+TIME_ZONE = env.str('BUSINESS_APP_TIME_ZONE')
 
-USE_I18N = env.bool('USE_I18N')
+USE_I18N = env.bool('BUSINESS_APP_USE_I18N')
 
-USE_TZ = env.bool('USE_TZ')
+USE_TZ = env.bool('BUSINESS_APP_USE_TZ')
 
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
+STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
+
 STATIC_URL = 'static/'
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles/')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
@@ -148,19 +157,19 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # JWT Settings
 SIMPLE_JWT = {
-    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=env.int('ACCESS_TOKEN_LIFETIME_MINUTES')),
-    'REFRESH_TOKEN_LIFETIME': timedelta(minutes=env.int('REFRESH_TOKEN_LIFETIME_MINUTES')),
-    'ROTATE_REFRESH_TOKENS': env.bool('ROTATE_REFRESH_TOKENS'),
-    'BLACKLIST_AFTER_ROTATION': env.bool('BLACKLIST_AFTER_ROTATION'),
-    'UPDATE_LAST_LOGIN': env.bool('UPDATE_LAST_LOGIN'),
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=env.int('BUSINESS_APP_ACCESS_TOKEN_LIFETIME_MINUTES')),
+    'REFRESH_TOKEN_LIFETIME': timedelta(minutes=env.int('BUSINESS_APP_REFRESH_TOKEN_LIFETIME_MINUTES')),
+    'ROTATE_REFRESH_TOKENS': env.bool('BUSINESS_APP_ROTATE_REFRESH_TOKENS'),
+    'BLACKLIST_AFTER_ROTATION': env.bool('BUSINESS_APP_BLACKLIST_AFTER_ROTATION'),
+    'UPDATE_LAST_LOGIN': env.bool('BUSINESS_APP_UPDATE_LAST_LOGIN'),
 
     'ALGORITHM': 'HS256',
-    'SIGNING_KEY': env.str('SIGNING_KEY'),
-    'VERIFYING_KEY': env.str('VERIFYING_KEY'),
-    'AUDIENCE': env.str('AUDIENCE'),
-    'ISSUER': env.str('ISSUER'),
+    'SIGNING_KEY': env.str('BUSINESS_APP_SIGNING_KEY'),
+    'VERIFYING_KEY': env.str('BUSINESS_APP_VERIFYING_KEY'),
+    'AUDIENCE': env.str('BUSINESS_APP_AUDIENCE'),
+    'ISSUER': env.str('BUSINESS_APP_ISSUER'),
     'JWK_URL': None,
-    'LEEWAY': env.int('LEEWAY_MINUTES'),
+    'LEEWAY': env.int('BUSINESS_APP_LEEWAY_MINUTES'),
 
     'AUTH_HEADER_TYPES': ('Bearer',),
     'AUTH_HEADER_NAME': 'HTTP_AUTHORIZATION',
@@ -175,6 +184,6 @@ SIMPLE_JWT = {
     'JTI_CLAIM': 'jti',
 
     'SLIDING_TOKEN_REFRESH_EXP_CLAIM': 'refresh_exp',
-    'SLIDING_TOKEN_LIFETIME': timedelta(minutes=env.int('SLIDING_TOKEN_LIFETIME_MINUTES')),
-    'SLIDING_TOKEN_REFRESH_LIFETIME': timedelta(minutes=env.int('SLIDING_TOKEN_REFRESH_LIFETIME_MINUTES')),
+    'SLIDING_TOKEN_LIFETIME': timedelta(minutes=env.int('BUSINESS_APP_SLIDING_TOKEN_LIFETIME_MINUTES')),
+    'SLIDING_TOKEN_REFRESH_LIFETIME': timedelta(minutes=env.int('BUSINESS_APP_SLIDING_TOKEN_REFRESH_LIFETIME_MINUTES')),
 }
