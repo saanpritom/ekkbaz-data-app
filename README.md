@@ -49,6 +49,7 @@ the **JWT Token** service and read the **README.md** there.
     ```bash
     curl \
     -H "Authorization: Bearer {access_key}" \
+    -H "Content-Type: application/json" \
     https://{your-domain-name}/api/business/data/
     ```
     - To view a single businesse's details run the following command
@@ -56,6 +57,7 @@ the **JWT Token** service and read the **README.md** there.
     ```bash
     curl \
     -H "Authorization: Bearer {access_key}" \
+    -H "Content-Type: application/json" \
     https://{your-domain-name}/api/business/data/{id}
     ```
     - To create a new business run the following command
@@ -64,6 +66,7 @@ the **JWT Token** service and read the **README.md** there.
     curl \
     -X POST \
     -H "Authorization: Bearer {access_key}" \
+    -H "Content-Type: application/json" \
     -d '{"name": "your-business-name", "location": "your-business-location"}' \
     https://{your-domain-name}/api/business/data/
     ```
@@ -73,6 +76,7 @@ the **JWT Token** service and read the **README.md** there.
     curl \
     -X PUT \
     -H "Authorization: Bearer {access_key}" \
+    -H "Content-Type: application/json" \
     -d '{"name": "your-business-name", "location": "your-business-location"}' \
     https://{your-domain-name}/api/business/data/{id}
     ```
@@ -82,6 +86,7 @@ the **JWT Token** service and read the **README.md** there.
     curl \
     -X PATCH \
     -H "Authorization: Bearer {access_key}" \
+    -H "Content-Type: application/json" \
     -d '{"name": "your-business-name"}' \
     https://{your-domain-name}/api/business/data/{id}
     ```
@@ -91,6 +96,7 @@ the **JWT Token** service and read the **README.md** there.
     curl \
     -X DELETE \
     -H "Authorization: Bearer {access_key}" \
+    -H "Content-Type: application/json" \
     https://{your-domain-name}/api/business/data/{id}
     ```
 
